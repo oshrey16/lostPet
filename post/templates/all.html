@@ -1,0 +1,46 @@
+<html>
+<body>
+    <h1>ברוכים הבאים!</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <br>
+    {% if pets_list %}
+        <ul>
+        {% for pet in pets_list %}
+        <td>תאריך הפרסום:</td>
+        <p> {{ pet.pub_date }}</p> 
+		<td>שם המפרסם:</td>
+        <p> {{ pet.pub_name }}</p> 
+		<td>טלפון המפרסם:</td>
+        <p> {{ pet.pub_phone }}</p> 
+		<td>סוג החיה:</td>
+        <p> {{ pet.animal_type }}</p> 
+		<td>מיקום:</td>
+        <p> {{ pet.animal_location }}</p> 
+		<td>פרטים נוספים:</td>
+        <p> {{ pet.animal_freetext }}</p> 
+		<p> {{ pet.animal_image }}</p> 
+        <img src="{{pet.animal_image.url}}" alt>
+            <p> _______________________________________________________________________________________</p>
+            <br>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>אין מפגשים זמינים.</p>
+    {% endif %}
+    </form>
+    </body>
+    </html>
+ 
+
+
+
+
+
+
+
+
+
+
+
+

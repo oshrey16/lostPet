@@ -11,7 +11,6 @@ def index(request):
     else: 
         form = postForm(request.POST, request.FILES)
         if form.is_valid():
-            print ("validddddddd")
             pub_date = form.cleaned_data['pub_date']
             pub_name = form.cleaned_data['pub_name']
             pub_phone = form.cleaned_data['pub_phone']
@@ -22,4 +21,8 @@ def index(request):
             animal_freetext = form.cleaned_data['animal_freetext']
             animal_image = form.cleaned_data['animal_image']
             new_post=form.save()
+            return redirect('success')
     return render(request, "post.html", {'form': form})
+    
+def successView(request):
+    return render(request, "success.html")    
