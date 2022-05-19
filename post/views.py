@@ -21,8 +21,6 @@ def index(request):
             animal_freetext = form.cleaned_data['animal_freetext']
             animal_image = form.cleaned_data['animal_image']
             new_post=form.save()
-            return redirect('success')
+            return redirect('/home')
     return render(request, "post.html", {'form': form})
-    
-def successView(request):
-    return render(request, "success.html")    
+       

@@ -22,6 +22,8 @@
 		<br>
 		<td>פרטים נוספים: {{ pet.animal_freetext }}</td>
         <img src="{{ pet.animal_image.url }}">
+		<br>
+		<td><a href="delete/{{ pet.id }}">הוחזר לבעליו</a></td>
             <p> _______________________________________________________________________________________</p>
             <br>
         {% endfor %}
