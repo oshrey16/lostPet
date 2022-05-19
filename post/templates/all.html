@@ -1,32 +1,33 @@
-<html>
+<html dir="rtl">
 <body>
     <h1>ברוכים הבאים!</h1>
+	<a href="#" onclick="post()" class="myButton">פרסם דיווח</a>
+    <script>
+    function post() {
+    location.replace("http://127.0.0.1:8000/post/")
+    }
+    </script>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
     <br>
     {% if pets_list %}
         <ul>
         {% for pet in pets_list %}
-        <td>תאריך הפרסום:</td>
         <p> {{ pet.pub_date }}</p> 
-		<td>שם המפרסם:</td>
-        <p> {{ pet.pub_name }}</p> 
-		<td>טלפון המפרסם:</td>
+		<td>פרטי המפרסם: {{ pet.pub_name }}</td>
         <p> {{ pet.pub_phone }}</p> 
-		<td>סוג החיה:</td>
-        <p> {{ pet.animal_type }}</p> 
-		<td>מיקום:</td>
-        <p> {{ pet.animal_location }}</p> 
-		<td>פרטים נוספים:</td>
-        <p> {{ pet.animal_freetext }}</p> 
-		<p> {{ pet.animal_image }}</p> 
-        <img src="{{pet.animal_image.url}}" alt>
+		<td>סוג החיה: {{ pet.animal_type }}</td>
+		<br>
+		<td>מיקום: {{ pet.animal_location }}</td>
+		<br>
+		<td>פרטים נוספים: {{ pet.animal_freetext }}</td>
+        <img src="{{ pet.animal_image.url }}">
             <p> _______________________________________________________________________________________</p>
             <br>
         {% endfor %}
         </ul>
     {% else %}
-        <p>אין מפגשים זמינים.</p>
+        <p>אין דיווחים זמינים.</p>
     {% endif %}
     </form>
     </body>

@@ -10,7 +10,7 @@ class LostPet(models.Model):
     animal_status = models.CharField(max_length=200)
     animal_location = models.CharField(max_length=200)
     animal_freetext = models.CharField(max_length=200)
-    animal_image = models.ImageField(upload_to ='uploads/')
+    animal_image = models.ImageField(upload_to ='media/uploads/')
     def __str__(self):
         return self.pub_name
     
