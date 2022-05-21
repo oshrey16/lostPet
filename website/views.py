@@ -12,3 +12,5 @@ def delete(request, id):
   pet = LostPet.objects.get(id=id)
   pet.delete()
   return HttpResponseRedirect(reverse(allp))    
+  
+     
