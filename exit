@@ -1,0 +1,59 @@
+[33mcommit 353ea8a0e233f4d7ba70b2003d7ae645aa79f182[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Sat May 21 20:14:21 2022 +0300
+
+    add options for pets and status
+
+[33mcommit ed217105c9dd45d18d90ca0a8696c1502dc86acf[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Thu May 19 16:42:13 2022 +0300
+
+    Delete Post
+
+[33mcommit 7c87d48c4da3e8471f5b1e3101a8805016ead4c5[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Thu May 19 14:53:06 2022 +0300
+
+    add image
+
+[33mcommit 5ad0a0fe1d90f662b1983c6b8b7b8ddcf22d724d[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Thu May 19 10:59:29 2022 +0300
+
+    homepage
+
+[33mcommit b01c0e1838c8a3deadd2199d3718c3645a8f5380[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Wed May 18 16:38:21 2022 +0300
+
+    hebrew title
+
+[33mcommit 8063c172796649bf62d0283ed2712dd7222e0d0a[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Wed May 18 16:16:07 2022 +0300
+
+    captcha
+
+[33mcommit a10b96d32f286c2424306787565777d6a8a5b481[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Wed May 18 16:03:48 2022 +0300
+
+    form fixed
+
+[33mcommit 406a6a4752437300254457cd1fe32e6202dd9a92[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Wed May 18 14:22:27 2022 +0300
+
+    add form
+
+[33mcommit bad6a7638a4f214c148561ddeac650215434d931[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Sat May 14 13:30:05 2022 +0300
+
+    DB Connection
+
+[33mcommit 5c25313103021c08a6fbcbb649231f24e3f9adff[m
+Author: Michal Binder <michalabr5@gmail.com>
+Date:   Wed May 11 14:45:03 2022 +0300
+
+    add homepage
