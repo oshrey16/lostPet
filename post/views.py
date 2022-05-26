@@ -24,3 +24,4 @@ def index(request):
             return redirect('/home')
     return render(request, "post.html", {'form': form})
        
+       
