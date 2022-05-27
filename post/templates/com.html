@@ -3,10 +3,21 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <style>
 body{
     background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
+}
+.nav-sidebar .active a { 
+    cursor: default;
+    background-color: white; 
+    color: #0072ff; 
+}
+.nav-sidebar .active a:hover {
+    background-color: #37D980;   
 }
 .contact-form{
     background: #fff;
@@ -62,8 +73,16 @@ div.c {
     cursor: pointer;
 }
 </style>
+<body>
 
-
+  <div class="col-sm-2 paddingTop20">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    <li class="active"> <a href="http://127.0.0.1:8000/home/"> <span class="glyphicon glyphicon-star"></span> דף הבית</a></li>
+                    <li class="nav-divider"></li>
+                </ul>
+            </nav>
+    </div>
 
 <div class="container contact-form">
             <div class="contact-image">
