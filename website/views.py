@@ -34,11 +34,11 @@ def com(request, id):
             try:
                 new_mail=form.save()
                 msgToHost = EmailMessage(
-                    u"פנייה חדשה : "+firstName+" "+lastName,
-                    freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+phone+" "+email
+                    u"למישהו יש חדש בנושא הדיווח!!",
+                    freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+firstName+ " "+lastName+" "+phone+" "+email
                     +"\n\n====================\n"+u"למחיקת הפרסום במידה והדיווח טופל:          "+"http://127.0.0.1:8000/home/delete/"+str(id), 
                     'lostpet.team@yahoo.com',
-                    ['michalabr5@gmail.com'],
+                    [pet.pub_email],
                 )
                 msgToHost.send()
 
