@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'post.apps.PostConfig',
     'captcha',
+    'django_twilio',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -139,3 +140,7 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER='lostpet.team@yahoo.com'
 EMAIL_HOST_PASSWORD='szjgocnghiifbhyq'
+
+TWILIO_ACCOUNT_SID = 'AC52db2ab41c0f75bf3293930eb41009df'
+TWILIO_AUTH_TOKEN = 'edca32de717497cf05d77ae069d52320'
+TWILIO_PHONE_NUMBER= '+19785232132'
