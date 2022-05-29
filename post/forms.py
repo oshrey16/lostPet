@@ -14,5 +14,5 @@ class comForm(ModelForm):
     captcha = CaptchaField()
     class Meta:
         model = Comment
-        fields = ['firstName','lastName','phone','email','freetext']
+        fields = ['pet','firstName','lastName','phone','email','freetext']
                 

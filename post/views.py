@@ -10,6 +10,7 @@ def index(request):
         form = postForm()
     else: 
         form = postForm(request.POST, request.FILES)
+        print(form.errors)
         if form.is_valid():
             pub_date = form.cleaned_data['pub_date']
             pub_name = form.cleaned_data['pub_name']
