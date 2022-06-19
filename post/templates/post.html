@@ -1,6 +1,6 @@
-<html dir="rtl">
-<head>
-</head>
+{% extends "base.html" %}
+{% block title %}<title>פרסם אבידה</title>{% endblock title %}
+{% block containerCenter %}
 <h1>פרסם דיווח</h1>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -62,5 +62,4 @@
       <button id="send" type="submit">submit!</button>
     </div>
 </form>
-</body>
-</html>
+{% endblock %}

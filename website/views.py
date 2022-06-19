@@ -45,4 +45,7 @@ def com(request, id):
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('/home')
-    return render(request, "com.html", {'form': form, 'pet_id': id})     
+    return render(request, "com.html", {'form': form, 'pet_id': id})
+
+def aboutUs(request):
+       return render(request, "aboutus.html")

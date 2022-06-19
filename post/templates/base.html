@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% block title %}<title></title>{% endblock title %}
+    {% load static %}
+    <link href= {% static 'post/fontawesome/css/all.min.css' %} rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href= {% static 'post/css/bootstrap.min.css' %} rel="stylesheet">
+    <link href= {% static 'post/css/templatemo-xtra-blog.css' %} rel="stylesheet">
+
+</head>
+<body>
+	<header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            {% comment %} <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button> {% endcomment %}
+            <div class="tm-site-header">
+                {% comment %} <img src="{% static 'post/logo.png' %}"  width="60" height="60">          {% endcomment %}
+                <h1 class="text-center">PetLost</h1>
+            </div>
+            <nav class="tm-nav" id="tm-nav">            
+                <ul>
+                    {% if "/home/" == request.path %}
+                    <li class="tm-nav-item active"><a href="/home/" class="tm-nav-link">
+                    {% else %}
+                    <li class="tm-nav-item"><a href="/home/" class="tm-nav-link">
+                    {% endif %}
+                        <i class="fas fa-home"></i>
+                        דף הבית
+                    </a></li>
+                    {% if "post" in request.path %}
+                    <li class="tm-nav-item active"><a href="post" class="tm-nav-link">
+                    {% else %}
+                    <li class="tm-nav-item"><a href="post" class="tm-nav-link">
+                    {% endif %}
+                        <i class="fas fa-pen"></i>
+                        פרסם אבידה
+                    </a></li>
+                    <li class="tm-nav-item"><a href="/home/" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        אבידות שפורסמו
+                    </a></li>
+                    {% if "aboutUs" in request.path %}
+                    <li class="tm-nav-item active"><a href="aboutUs" class="tm-nav-link">
+                    {% else %}
+                    <li class="tm-nav-item"><a href="aboutUs" class="tm-nav-link">
+                    {% endif %}
+                        <i class="far fa-comments"></i>
+                        קצת עלינו
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="tm-mb-65">
+                <a rel="nofollow" href="https://fb.com/oshrey16" class="tm-social-link">
+                    <i class="fab fa-facebook tm-social-icon"></i>
+                </a>
+                <a href="https://twitter.com" class="tm-social-link">
+                    <i class="fab fa-twitter tm-social-icon"></i>
+                </a>
+                <a href="https://instagram.com" class="tm-social-link">
+                    <i class="fab fa-instagram tm-social-icon"></i>
+                </a>
+                <a href="https://linkedin.com" class="tm-social-link">
+                    <i class="fab fa-linkedin tm-social-icon"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container-fluid">
+        <main class="tm-main">
+        {% block containerCenter %}{% endblock  %}
+        <footer class="row tm-row">
+            <hr class="col-12">
+        </footer>
+        </main>
+    </div>
+    <script src= {% static 'post/js/jquery.min.js' %} </script>
+    <script src= {% static 'post/js/templatemo-script.js' %} </script>
+</body>
+</html>
