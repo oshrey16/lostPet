@@ -1,0 +1,231 @@
+<html dir="rtl">
+
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<style>
+
+
+
+.item-box-blog-date span.mon {
+  font-size: 18px;
+   color:#34ca78;
+    font-family: 'Lobster';
+}
+
+.item-box-blog-date span.day {
+  font-size: 16px;
+   color:#34ca78;
+    font-family: 'Lobster';
+}
+
+.blogShort{ border-bottom:1px solid #ddd;}
+.add{background: #333; padding: 10%; height: 300px;}
+
+.nav-sidebar { 
+    width: 100%;
+    padding: 8px 0; 
+    border-right: 1px solid #ddd;
+}
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+}
+.nav-sidebar .active a { 
+    cursor: default;
+    background-color: white; 
+    color: #0072ff; 
+}
+.nav-sidebar .active a:hover {
+    background-color: #37D980;   
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; 
+}
+
+.btn-blog {
+    color: #ffffff;
+    background-color: #37d980;
+    border-color: #37d980;
+    border-radius:0;
+    margin-bottom:10px
+}
+.btn-blog:hover,
+.btn-blog:focus,
+.btn-blog:active,
+.btn-blog.active,
+.open .dropdown-toggle.btn-blog {
+    color: white;
+    background-color:#34ca78;
+    border-color: #34ca78;
+}
+h1 a, h2 a {
+     color:#34ca78;
+    font-family: 'Lobster';
+}
+ 
+ .margin10{margin-bottom:10px; margin-right:10px;}
+ body{
+    background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
+}
+.contact-form{
+    background: #fff;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+.contact-form .form-control{
+    border-radius:1rem;
+}
+div.c {
+  text-align: left;
+} 
+.contact-image{
+    text-align: center;
+}
+.contact-image img{
+    border-radius: 10rem;
+    width: 100%;
+    margin-top: -8%;
+}
+.contact-form form{
+    padding: 14%;
+}
+.contact-form form .row{
+    margin-bottom: -7%;
+}
+.contact-form h1{
+    margin-bottom: 15%;
+    margin-top: -30%;
+    text-align: center;
+    color: white;
+    font-family: 'Lobster';
+
+}
+.contact-form h2{
+    margin-bottom: 15%;
+    margin-top: -10%;
+    text-align: center;
+    color: #0072ff;
+    font-family: 'Lobster';
+
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 70%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}
+img {
+  border-radius: 9px;
+}
+
+
+</style>
+
+<body>
+
+<div class="col-sm-2 paddingTop20">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    <li class="active"> <a href="http://127.0.0.1:8000/home/"> <span class="glyphicon glyphicon-star"></span> דף הבית </a></li>
+                    <br />
+                    <br />
+                    <li class="active"> <a href="http://127.0.0.1:8000/post/"> <span class="glyphicon glyphicon-star"></span> פרסם דיווח </a></li>
+                </ul>
+            </nav>
+        </div>
+<div class="container contact-form">
+            <div class="contact-image">
+<form method="post">
+              <h1> Lost Pet</h1>
+       <form method="post" enctype="multipart/form-data">
+
+ 
+          
+        
+<div class="container contact-form">
+            <div class="contact-image">
+         <article><p>
+        {% csrf_token %}
+         <br>       
+        {% if pets_list %}
+        <ul>    
+        {% for pet in pets_list %}
+
+
+                      <div class="item-box-blog-heading">                   
+                     
+                              <h2>{{ pet.pub_name }}</h2>
+                                 <br />
+                                <br />
+                              <img src="{{ pet.animal_image.url }}"  width="600" height="300">
+                                 <br />
+                                 <br />
+
+                            <div class="item-box-blog-image">
+
+                            <div class="item-box-blog-date bg-blue-ui white"> <span class="Date"> <p> {{ pet.pub_date }}</p></span> </div>  <br>
+                          <div class="item-box-blog-body">
+                            <div class="item-box-blog-heading">
+                              <a href="#" tabindex="0">
+                              </a>
+                            </div>
+                            
+                            <div class="item-box-blog-data" style="padding: px 15px;">
+                              <p><i class="fa fa-user-o"></i><p> {{ pet.pub_phone }}</p> 
+                            </div>
+                            <div class="item-box-blog-text">
+                             		<td>סוג החיה: {{ pet.animal_type }}</td>
+		                            <br>
+	                            	<td>מיקום: {{ pet.animal_location }}</td>
+	                            	<br>
+	                            	<td>פרטים נוספים: {{ pet.animal_freetext }}</td>
+
+                            </div>
+                          </div>  
+                        
+                     <a class="mt"> <a href="com/{{ pet.id }}" tabindex="0" class="btn bg-blue-ui white read">יצירת קשר</a> 
+                       <br />
+                    <br />
+                      <br />
+                    <br />
+                      <br />
+                    <br />
+                 </div>
+                   </p></article>
+             
+    </ul>
+
+       {% endfor %}
+    {% else %}
+        <p>אין דיווחים זמינים.</p>
+    {% endif %}
+    </form>
+
+    </body>
+    </html>

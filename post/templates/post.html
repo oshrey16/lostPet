@@ -1,6 +1,28 @@
-<html dir="rtl">
-<head>
-</head>
+{% extends "base.html" %}
+{% block title %}<title>פרסם אבידה</title>{% endblock title %}
+{% block tm-nav %}
+            <nav class="tm-nav" id="tm-nav">            
+                <ul>
+                    <li class="tm-nav-item"><a href="../home" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        דף הבית
+                    </a></li>
+                    <li class="tm-nav-item active"><a href="post" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        פרסם אבידה
+                    </a></li>
+                    <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        אבידות שפורסמו
+                    </a></li>
+                    <li class="tm-nav-item"><a href="contact.html" class="tm-nav-link">
+                        <i class="far fa-comments"></i>
+                        קצת עלינו
+                    </a></li>
+                </ul>
+            </nav>
+            {% endblock tm-nav %}
+{% block containerCenter %}
 <h1>פרסם דיווח</h1>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -62,5 +84,4 @@
       <button id="send" type="submit">submit!</button>
     </div>
 </form>
-</body>
-</html>
+{% endblock %}
