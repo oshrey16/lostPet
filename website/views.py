@@ -4,6 +4,8 @@ from post.models import LostPet
 from django.urls import reverse
 from post.forms import comForm
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
+from twilio.rest import Client
+from django.conf import settings
 
 def allp(request):
 	pets_list = LostPet.objects.order_by('-id')[:20]
@@ -34,16 +36,22 @@ def com(request, id):
             try:
                 new_mail=form.save()
                 msgToHost = EmailMessage(
-                    u"פנייה חדשה : "+firstName+" "+lastName,
-                    freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+phone+" "+email
+                    u"למישהו יש חדש בנושא הדיווח!!",
+                    freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+firstName+ " "+lastName+" "+phone+" "+email
                     +"\n\n====================\n"+u"למחיקת הפרסום במידה והדיווח טופל:          "+"http://127.0.0.1:8000/home/delete/"+str(id), 
                     'lostpet.team@yahoo.com',
-                    ['michalabr5@gmail.com'],
+                    [pet.pub_email],
                 )
                 msgToHost.send()
 
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
+            to = pet.pub_phone
+            client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+            response = client.messages.create(
+                body= (u"למישהו יש חדש בנושא הדיווח!!\n"+
+                        freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+firstName+ " "+lastName+" "+phone+" "+email), 
+                to=to, from_=settings.TWILIO_PHONE_NUMBER)
             return redirect('/home')
     return render(request, "com.html", {'form': form, 'pet_id': id})
 
