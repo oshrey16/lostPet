@@ -63,3 +63,5 @@ def aboutUs(request):
        return render(request, "aboutus.html")
 def errorsms(request):
        return render(request, "errorsms.html")
+def my404(request,exception):
+    return render(request,"404.html")
