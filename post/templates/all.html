@@ -20,7 +20,7 @@
     {% for pet in pets_list %}
     <article class="col-12 col-md-6 tm-post">
         <hr class="tm-hr-primary">
-        <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+        <a href="com/{{ pet.id }}" class="effect-lily tm-post-link tm-pt-60">
             <div class="tm-post-link-inner">
                 <img src={{ pet.animal_image.url }} width="600" height="300">                            
             </div>
