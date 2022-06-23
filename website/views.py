@@ -39,21 +39,29 @@ def com(request, id):
                     u"למישהו יש חדש בנושא הדיווח!!",
                     freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+firstName+ " "+lastName+" "+phone+" "+email
                     +"\n\n====================\n"+u"למחיקת הפרסום במידה והדיווח טופל:          "+"http://127.0.0.1:8000/home/delete/"+str(id), 
-                    'lostpet.team@yahoo.com',
+                    'lostpet7@mail.com',
                     [pet.pub_email],
                 )
-                msgToHost.send()
+                # TODO UPDATE EMAIL
+                # msgToHost.send()
 
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            to = pet.pub_phone
+            to = "+972"+pet.pub_phone
             client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-            response = client.messages.create(
-                body= (u"למישהו יש חדש בנושא הדיווח!!\n"+
-                        freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+firstName+ " "+lastName+" "+phone+" "+email), 
-                to=to, from_=settings.TWILIO_PHONE_NUMBER)
-            return redirect('/home')
+            try:
+                response = client.messages.create(
+                    body= (u"למישהו יש חדש בנושא הדיווח!!\n"+
+                            freetext+"\n\n==================================\n"+u"   פרטים ליצירת קשר: "+firstName+ " "+lastName+" "+phone+" "+email), 
+                    to=to, from_=settings.TWILIO_PHONE_NUMBER)
+                return redirect('/home')
+            except:
+                return redirect('/home/errorsms')
     return render(request, "com.html", {'form': form, 'pet_id': id})
 
 def aboutUs(request):
        return render(request, "aboutus.html")
+def errorsms(request):
+       return render(request, "errorsms.html")
+def my404(request,exception):
+    return render(request,"404.html")

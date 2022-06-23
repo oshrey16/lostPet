@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block title %}<title>LostPet</title>{% endblock title %}
+{% block containerCenter %}
 <div class="main">
     <form method="POST">
         {% csrf_token %}
@@ -6,3 +9,4 @@
         <a href="/home">לא </a>
     </form>
 </div>
+{% endblock %}

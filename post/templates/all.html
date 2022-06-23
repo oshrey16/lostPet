@@ -20,14 +20,15 @@
     {% for pet in pets_list %}
     <article class="col-12 col-md-6 tm-post">
         <hr class="tm-hr-primary">
-        <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+        <a href="com/{{ pet.id }}" class="effect-lily tm-post-link tm-pt-60">
             <div class="tm-post-link-inner">
                 <img src={{ pet.animal_image.url }} width="600" height="300">                            
             </div>
             <span class="position-absolute tm-new-badge">New</span>
             <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ pet.pub_name }}</h2>
         </a>                    
-        <p class="tm-pt-30">{{ pet.animal_freetext }}<br>{{ pet.animal_location }}</p>
+        <p class="tm-pt-30">{{ pet.animal_freetext }}<br>{{ pet.animal_location }}<br>
+            <a class="mt"> <a href="com/{{ pet.id }}" tabindex="0" class="btn bg-blue-ui white read">יצירת קשר</a></p>
         <div class="d-flex justify-content-between tm-pt-45">
             <span class="tm-color-primary">{{ pet.animal_type }}</span>
             <span class="tm-color-primary">{{ pet.pub_date }}</span>
