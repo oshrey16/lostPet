@@ -7,8 +7,9 @@ from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from twilio.rest import Client
 from django.conf import settings
 from lostPet.settings import EMAIL_HOST_USER
+import json
 
-
+heb_dict = ""
 def allp(request):
     pets_list = LostPet.objects.order_by('-id')[:20]
     context = {'pets_list': pets_list}
@@ -23,28 +24,27 @@ def delete(request, id):
     return render(request, "delete.html")
 
 
-SUBJECT_STR = u"למישהו יש חדש בנושא הדיווח!!"
-
-
 def bodyCreate(freetext, firstName, lastName, phone, email, hosturl, id):
     text = ""
     text += freetext
-    text += "\n\n==================================\n"
-    text += u"   פרטים ליצירת קשר: {} {} {} {}".format(
-        firstName, lastName, phone, email)
-    text += "\n\n====================\n" + \
-        u"למחיקת הפרסום במידה והדיווח טופל:          "
-    text += (hosturl+"delete/"+str(id))
-    print(text)
+    text += "\n\n====================\n"
+    text += heb_dict["Words"][0]["Email"]["body"]["1"]
+    text += " {} {} {} {}".format(firstName, lastName, phone, email)
+    text += "\n\n====================\n"
+    text += heb_dict["Words"][0]["Email"]["body"]["2"]
+    # text += " {}delete/{}".format(hosturl,str(id))
+    text += (" " + hosturl+"delete/"+str(id))
     return text
 
 
 def bodyCreateSMS(freetext, firstName, lastName, phone, email):
     text = ""
-    text += u"למישהו יש חדש בנושא הדיווח!!\n"
+    text += heb_dict["Words"][1]["SMS"]["Subject"]
+    text += "\n"
     text += freetext
-    text += "\n\n==================================\n"
-    text += u"פרטים ליצירת קשר: {} {} {} {} ".format(
+    text += "\n\n====================\n"
+    text += heb_dict["Words"][1]["SMS"]["Con"]
+    text += u" {} {} {} {} ".format(
         firstName, lastName, phone, email)
 
 
@@ -52,41 +52,45 @@ def com(request, id):
     if request.method == 'GET':
         form = comForm()
     else:
-        form = comForm(request.POST, request.FILES)
-        # print(form.errors)
-        if form.is_valid():
-            pet = form.cleaned_data['pet']
-            firstName = form.cleaned_data['firstName']
-            lastName = form.cleaned_data['lastName']
-            phone = form.cleaned_data['phone']
-            email = form.cleaned_data['email']
-            freetext = form.cleaned_data['freetext']
-            try:
-                new_mail = form.save()
-                msgToHost = EmailMessage(
-                    SUBJECT_STR,
-                    bodyCreate(freetext, firstName, lastName, phone,
-                               email, request.build_absolute_uri("/home/"), id),
-                    EMAIL_HOST_USER,
-                    [pet.pub_email],
-                )
-                # TODO-  UPDATE EMAIL
-                # msgToHost.send()
+        with open('website/text_heb.json','rb') as json_file:
+            global heb_dict
+            heb_dict = json.load(json_file)
+            print(heb_dict)
+            form = comForm(request.POST, request.FILES)
+            # print(form.errors)
+            if form.is_valid():
+                pet = form.cleaned_data['pet']
+                firstName = form.cleaned_data['firstName']
+                lastName = form.cleaned_data['lastName']
+                phone = form.cleaned_data['phone']
+                email = form.cleaned_data['email']
+                freetext = form.cleaned_data['freetext']
+                try:
+                    new_mail = form.save()
+                    msgToHost = EmailMessage(
+                        heb_dict["Words"][0]["Email"]["Subject"],
+                        bodyCreate(freetext, firstName, lastName, phone,
+                                email, request.build_absolute_uri("/home/"), id),
+                        EMAIL_HOST_USER,
+                        [pet.pub_email],
+                    )
+                    # TODO-  UPDATE EMAIL
+                    # msgToHost.send()
 
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
 
-            to = "+972"+pet.pub_phone
-            client = Client(settings.TWILIO_ACCOUNT_SID,
-                            settings.TWILIO_AUTH_TOKEN)
-            try:
-                response = client.messages.create(
-                    body=bodyCreateSMS(freetext, firstName, lastName, phone, email), to=to, from_=settings.TWILIO_PHONE_NUMBER)
-                return redirect('/home')
-            except:
-                return redirect('/home/errorsms')
-        else:
-            print("ERROR- form not ok")
+                to = "+972"+pet.pub_phone
+                client = Client(settings.TWILIO_ACCOUNT_SID,
+                                settings.TWILIO_AUTH_TOKEN)
+                try:
+                    response = client.messages.create(
+                        body=bodyCreateSMS(freetext, firstName, lastName, phone, email), to=to, from_=settings.TWILIO_PHONE_NUMBER)
+                    return redirect('/home')
+                except:
+                    return redirect('/home/errorsms')
+            else:
+                print("ERROR- form not ok")
     return render(request, "com.html", {'form': form, 'pet_id': id})
 
 
