@@ -4,6 +4,7 @@ from django.contrib.staticfiles.urls import static
 from django.urls import include, path
 
 handler404 = 'website.views.my404'
+handler500 = 'website.views.my500'
 
 urlpatterns = [
     path('home/', include('website.urls')),
