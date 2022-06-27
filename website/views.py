@@ -75,7 +75,7 @@ def com(request, id):
                         [pet.pub_email],
                     )
                     # TODO-  UPDATE EMAIL
-                    # msgToHost.send()
+                    msgToHost.send()
 
                 except BadHeaderError:
                     return HttpResponse('Invalid header found.')

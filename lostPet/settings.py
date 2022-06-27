@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p1a&j^w(b=vh#fi#dqo9ick^59j#&umtt2u!8#nadet&zl+ba8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -135,11 +135,11 @@ MEDIA_ROOT = os.path.join('media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST='smtp.office365.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER='lostpet7@gmail.com'
-EMAIL_HOST_PASSWORD='Aa$123456'
+EMAIL_HOST_USER='lostpet7@outlook.com'
+EMAIL_HOST_PASSWORD='Aa$123456$'
 
 TWILIO_ACCOUNT_SID = 'AC52db2ab41c0f75bf3293930eb41009df'
 TWILIO_AUTH_TOKEN = 'c5991b126ab55ce57d1010d1817cdfdf'
